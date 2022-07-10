@@ -1,5 +1,9 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 require 'vendor/autoload.php';
 
 $mail = new PHPMailer(true);
@@ -8,13 +12,14 @@ $mail = new PHPMailer(true);
 
 try{$mail->SMTPDebug = SMTP::DEBUG_SERVER;  
 $mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'smtp.mailtrap.io';
 $mail->SMTPAuth = true;
-$mail->Username = 'renanpereira0903@gmail.com';
-$mail->Password = 'Sz981224282re@suzano';
+$mail->Username = '83d213071a63df';
+$mail->Password = 'dc7fe92938b6b5';
 $mail->SMTPSecure = 'tls';
-$mail->Port =  587;
+$mail->Port =  2525;
 
+$mail->setFrom("renansilva0309@outlook.com", "Conslulta");
 $mail->AddAddress('renanpereira0903@gmail.com');
 
 $mail->isHTML();
@@ -23,7 +28,7 @@ $mail->Body = "Olá, estamos testando um novo e-mail";
 
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'Messagem enviada com sucesso';
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Messagem não pode ser enviada!. Mailer Error: {$mail->ErrorInfo}";
 }
